@@ -1,0 +1,914 @@
+/* Product Comparison Dashboard Styles */
+
+:root {
+    --danfoss-red: #E30513;
+    --danfoss-dark: #001C38;
+    --danfoss-blue: #0066B3;
+    --danfoss-light-blue: #E6F2FF;
+    --competitor-color: #FF6B35;
+    --neutral-color: #6C757D;
+    --success-green: #28A745;
+    --border-color: #DEE2E6;
+    --bg-light: #F8F9FA;
+    --shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+    border-left: 5px solid var(--danfoss-red);
+}
+
+.header-content {
+    text-align: center;
+}
+
+.logo {
+    max-width: 200px;
+    margin-bottom: 15px;
+}
+
+h1 {
+    color: var(--danfoss-dark);
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: var(--neutral-color);
+    font-size: 1.2em;
+}
+
+/* Selection Panel */
+.selection-panel {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.selection-card {
+    padding: 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-light);
+}
+
+.selection-card h3 {
+    color: var(--danfoss-dark);
+    margin-bottom: 20px;
+    font-size: 1.4em;
+    display: flex;
+    align-items: center;
+}
+
+.selection-card h3::before {
+    content: '▶';
+    margin-right: 10px;
+    color: var(--danfoss-red);
+}
+
+.dropdown-group {
+    margin-bottom: 20px;
+}
+
+.dropdown-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--danfoss-dark);
+}
+
+.dropdown-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1em;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dropdown-group select:hover {
+    border-color: var(--danfoss-blue);
+}
+
+.dropdown-group select:focus {
+    outline: none;
+    border-color: var(--danfoss-red);
+    box-shadow: 0 0 0 3px rgba(227, 5, 19, 0.1);
+}
+
+.compare-button {
+    grid-column: 1 / -1;
+    padding: 15px 40px;
+    background: var(--danfoss-red);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.compare-button:hover {
+    background: #C30411;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.compare-button:active {
+    transform: translateY(0);
+}
+
+/* Comparison Results */
+.comparison-results {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid var(--danfoss-red);
+}
+
+.results-header h2 {
+    color: var(--danfoss-dark);
+    font-size: 2em;
+}
+
+.export-button {
+    padding: 10px 25px;
+    background: var(--danfoss-blue);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.export-button:hover {
+    background: #0052A3;
+}
+
+/* Comparison Table */
+.comparison-table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 30px;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.comparison-table thead {
+    background: var(--danfoss-dark);
+    color: white;
+}
+
+.comparison-table th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.spec-category {
+    width: 15%;
+    background: var(--danfoss-dark);
+}
+
+.spec-name {
+    width: 25%;
+    background: var(--danfoss-dark);
+}
+
+.product-col {
+    width: 22%;
+    text-align: center;
+}
+
+.danfoss-col {
+    background: var(--danfoss-red);
+}
+
+.competitor-col {
+    background: var(--competitor-color);
+}
+
+.advantage-col {
+    width: 16%;
+    text-align: center;
+    background: var(--danfoss-dark);
+}
+
+.product-header {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.brand-name {
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.model-name {
+    font-size: 1.1em;
+    font-weight: 700;
+}
+
+.comparison-table tbody tr {
+    border-bottom: 1px solid var(--border-color);
+    transition: background 0.2s ease;
+}
+
+.comparison-table tbody tr:hover {
+    background: var(--danfoss-light-blue);
+}
+
+.comparison-table td {
+    padding: 15px;
+}
+
+.category-cell {
+    font-weight: 700;
+    color: var(--danfoss-dark);
+    background: var(--bg-light);
+    border-right: 3px solid var(--danfoss-red);
+    vertical-align: top;
+}
+
+.spec-name-cell {
+    font-weight: 600;
+    color: #495057;
+}
+
+.value-cell {
+    font-family: 'Courier New', monospace;
+    font-size: 0.95em;
+}
+
+.danfoss-value {
+    background: #FFF5F5;
+    color: var(--danfoss-dark);
+}
+
+.competitor-value {
+    background: #FFF8F5;
+    color: var(--danfoss-dark);
+}
+
+/* Advantage Badges */
+.advantage-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.danfoss-advantage {
+    background: var(--danfoss-red);
+    color: white;
+}
+
+.competitor-advantage {
+    background: var(--competitor-color);
+    color: white;
+}
+
+.neutral {
+    background: var(--neutral-color);
+    color: white;
+}
+
+/* Summary Cards */
+.summary-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.summary-card {
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.danfoss-summary {
+    background: linear-gradient(135deg, #FFF5F5 0%, #FFE5E5 100%);
+    border-left: 5px solid var(--danfoss-red);
+}
+
+.competitor-summary {
+    background: linear-gradient(135deg, #FFF8F5 0%, #FFE8DD 100%);
+    border-left: 5px solid var(--competitor-color);
+}
+
+.summary-card h3 {
+    color: var(--danfoss-dark);
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.summary-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.summary-card li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    font-size: 0.95em;
+}
+
+.summary-card li:last-child {
+    border-bottom: none;
+}
+
+.summary-card li::before {
+    content: '✓';
+    margin-right: 10px;
+    font-weight: bold;
+    color: var(--success-green);
+}
+
+/* Info Section */
+.info-section {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-top: 30px;
+}
+
+.info-section h3 {
+    color: var(--danfoss-dark);
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.info-section p {
+    color: #495057;
+    margin-bottom: 15px;
+}
+
+.data-sources {
+    list-style: none;
+    padding: 0;
+}
+
+.data-sources li {
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    background: var(--bg-light);
+    border-radius: 6px;
+    border-left: 3px solid var(--danfoss-blue);
+}
+
+.data-sources a {
+    color: var(--danfoss-blue);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.data-sources a:hover {
+    text-decoration: underline;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+    }
+    
+    .selection-panel,
+    .export-button,
+    .info-section {
+        display: none;
+    }
+    
+    .comparison-results {
+        box-shadow: none;
+    }
+    
+    .comparison-table {
+        font-size: 0.85em;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .selection-panel {
+        grid-template-columns: 1fr;
+    }
+    
+    .summary-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8em;
+    }
+    
+    .subtitle {
+        font-size: 1em;
+    }
+    
+    .comparison-table {
+        font-size: 0.85em;
+    }
+    
+    .comparison-table th,
+    .comparison-table td {
+        padding: 10px 8px;
+    }
+}
+
+/* Loading Animation */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.loading {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Live Data Toggle Styles */
+.data-source-toggle {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--danfoss-blue);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.toggle-label {
+    font-weight: 600;
+    color: var(--danfoss-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.icon-live {
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.data-status {
+    font-size: 0.9em;
+    color: var(--neutral-color);
+    font-weight: normal;
+}
+
+.data-status.live {
+    color: var(--success-green);
+}
+
+/* Data Source Indicators */
+.data-source-indicator {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.source-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 600;
+    background: var(--bg-light);
+    color: var(--neutral-color);
+}
+
+.source-badge.live {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    animation: pulse-live 2s infinite;
+}
+
+.source-badge.cached {
+    background: var(--bg-light);
+    color: var(--neutral-color);
+}
+
+@keyframes pulse-live {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 8px rgba(40, 167, 69, 0);
+    }
+}
+
+/* Button Group */
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.refresh-button {
+    background: linear-gradient(135deg, var(--danfoss-blue), #0052a3);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.refresh-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    background: linear-gradient(135deg, #0052a3, var(--danfoss-blue));
+}
+
+.btn-icon {
+    font-size: 1.2em;
+}
+
+/* Loading Indicator */
+.loading-indicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    z-index: 10000;
+    text-align: center;
+    min-width: 300px;
+}
+
+.spinner {
+    border: 4px solid var(--bg-light);
+    border-top: 4px solid var(--danfoss-blue);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-indicator p {
+    color: var(--danfoss-dark);
+    font-weight: 600;
+}
+
+/* Toast Notifications */
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    background: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 300px;
+    animation: slideInRight 0.3s ease;
+    border-left: 4px solid;
+}
+
+.toast-success {
+    border-color: var(--success-green);
+}
+
+.toast-error {
+    border-color: var(--danfoss-red);
+}
+
+.toast-warning {
+    border-color: #ffc107;
+}
+
+.toast-info {
+    border-color: var(--danfoss-blue);
+}
+
+.toast-icon {
+    font-size: 1.5em;
+}
+
+.toast-message {
+    flex: 1;
+    color: var(--danfoss-dark);
+}
+
+.toast-fade-out {
+    animation: fadeOut 0.3s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Cache Info Section */
+.cache-info {
+    background: var(--bg-light);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.cache-info h4 {
+    color: var(--danfoss-dark);
+    margin-bottom: 10px;
+}
+
+#cache-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#cache-stats p {
+    margin: 0;
+    color: var(--neutral-color);
+}
+
+#cache-stats span {
+    font-weight: 600;
+    color: var(--danfoss-dark);
+}
+
+.btn-secondary {
+    background: var(--neutral-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: var(--danfoss-dark);
+    transform: translateY(-2px);
+}
+
+/* Tooltip */
+[title] {
+    position: relative;
+    cursor: help;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--danfoss-blue);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--danfoss-red);
+}
+
+/* Responsive Design Enhancements */
+@media (max-width: 768px) {
+    .data-source-toggle {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
+    .refresh-button,
+    .compare-button {
+        width: 100%;
+    }
+    
+    #toast-container {
+        left: 20px;
+        right: 20px;
+    }
+    
+    .toast {
+        min-width: auto;
+    }
+}
+
+/* Data Notice Styles */
+.data-notice {
+    margin-top: 15px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border-left: 4px solid var(--danfoss-blue);
+    border-radius: 5px;
+    font-size: 0.95em;
+    color: var(--danfoss-dark);
+    display: inline-block;
+}
+
+.data-notice a {
+    color: var(--danfoss-blue);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px dotted var(--danfoss-blue);
+    transition: all 0.3s ease;
+}
+
+.data-notice a:hover {
+    color: var(--danfoss-red);
+    border-bottom-color: var(--danfoss-red);
+}
+
+.update-note {
+    margin-top: 15px;
+    padding: 10px;
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #856404;
+}
+
+/* Data Sources List */
+.data-sources {
+    list-style: none;
+    padding: 0;
+}
+
+.data-sources li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.data-sources li:last-child {
+    border-bottom: none;
+}
+
+.data-sources li strong {
+    color: var(--danfoss-dark);
+    margin-right: 10px;
+}
+
+.data-sources li a {
+    color: var(--danfoss-blue);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.data-sources li a:hover {
+    color: var(--danfoss-red);
+    text-decoration: underline;
+}
